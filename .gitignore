@@ -3,3 +3,4 @@ dist/
 inspect/
 *.log
 .DS_Store
+.env
