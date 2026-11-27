@@ -1,6 +1,6 @@
 {
   "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
-  "name": "what-changed",
+  "name": "what-change",
   "post": {
     "dir": "dist/client",
     "entrypoints": {
@@ -69,5 +69,8 @@
   },
   "scripts": {
     "build": "npm run build"
+  },
+  "dev": {
+    "subreddit": "what_change_dev"
   }
 }

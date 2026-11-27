@@ -1,6 +1,7 @@
 node_modules/
 dist/
 inspect/
+listing/
 *.log
 .DS_Store
 .env
