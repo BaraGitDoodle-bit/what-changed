@@ -1,0 +1,73 @@
+{
+  "$schema": "https://developers.reddit.com/schema/config-file.v1.json",
+  "name": "what-changed",
+  "post": {
+    "dir": "dist/client",
+    "entrypoints": {
+      "default": {
+        "entry": "index.html",
+        "height": "tall",
+        "styles": {
+          "height": "tall",
+          "backgroundColor": "#0B141BFF",
+          "backgroundColorDark": "#0B141BFF"
+        }
+      }
+    }
+  },
+  "server": {
+    "dir": "dist/server",
+    "entry": "index.js"
+  },
+  "permissions": {
+    "redis": true,
+    "reddit": {
+      "enable": true,
+      "scope": "user"
+    }
+  },
+  "triggers": {
+    "onAppInstall": "/internal/triggers/app-install",
+    "onAppUpgrade": "/internal/triggers/app-upgrade",
+    "onCommentCreate": "/internal/triggers/comment-create"
+  },
+  "scheduler": {
+    "tasks": {
+      "generate-tomorrow": {
+        "endpoint": "/internal/cron/generate",
+        "cron": "55 23 * * *"
+      },
+      "publish-daily": {
+        "endpoint": "/internal/cron/publish",
+        "cron": "0 0 * * *"
+      },
+      "daily-recap": {
+        "endpoint": "/internal/cron/recap",
+        "cron": "0 20 * * *"
+      },
+      "watchdog": {
+        "endpoint": "/internal/cron/watchdog",
+        "cron": "*/5 * * * *"
+      }
+    }
+  },
+  "settings": {
+    "subreddit": {
+      "flairRewards": {
+        "type": "boolean",
+        "label": "Grant streak flair rewards",
+        "helpText": "Give players flair badges at 3, 7, 14, 30 and 100 day streaks. Safe to leave on: if the subreddit has user flair disabled the app silently skips it.",
+        "defaultValue": true
+      },
+      "hintReplies": {
+        "type": "boolean",
+        "label": "Answer !hint comments",
+        "helpText": "Reply to a top-level comment that says !hint with one spoiler-wrapped quadrant per user per day.",
+        "defaultValue": true
+      }
+    }
+  },
+  "scripts": {
+    "build": "npm run build"
+  }
+}
